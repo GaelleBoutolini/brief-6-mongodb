@@ -49,9 +49,8 @@ function displayLogin()
     if (!isset($_SESSION['id'])) {
         require './Vue/Login.php';
     } else {
-        // header('Location: index.php?action=displayDashboard');
-        // require './Vue/Dashboard.php';
-        require './Vue/Login.php';
+        header('Location: index.php?action=displayDashboard');
+        require './Vue/Dashboard.php';
     }
 }
 
@@ -156,34 +155,39 @@ function displayEditDeleteMeal()
         require './Vue/EditDeleteMeal.php';
     }
 }
-// // Modifier d'un repas
-// function editMeal()
-// {
-//     if (!empty($_POST)) {
-//         $repasId = $_GET['id'];
-//         $type = $_POST['type'];
-//         $intitule = $_POST['intitule'];
-//         $calories = $_POST['calories'];
-//         $heureDate = $_POST['heure-date'];
-//         $result = getEditMeal($repasId, $type, $intitule, $calories, $heureDate);
-//         if ($result == true || $result == 1) {
-//             header('Location: index.php?action=displayDashboard');
-//         } else {
-//             require './Vue/Error.php';
-//         }
-//     }
-// }
-// // Supprimer d'un repas
-// function deleteMeal()
-// {
-//     $repasId = $_GET['id'];
-//     $result = getDeleteMeal($repasId);
-//     if ($result == true || $result == 1) {
-//         header('Location: index.php?action=displayDashboard');
-//     } else {
-//         require './Vue/Error.php';
-//     }
-// }
+// Modifier d'un repas
+function editMeal()
+{
+    if (!empty($_POST)) {
+        $repasId = $_GET['id'];
+        $type = $_POST['type'];
+        $intitule = $_POST['intitule'];
+        $calories = $_POST['calories'];
+        $date = explode('T', $_POST['heure-date'])[0];
+        $heure = explode('T', $_POST['heure-date'])[1];
+
+        $result = getEditMeal($repasId, $type, $intitule, $calories, $date, $heure);
+        // print_r($result);
+
+        if ($result == true || $result == 1) {
+            header('Location: index.php?action=displayDashboard');
+            require './Vue/Dashboard.php';
+        } else {
+            require './Vue/Error.php';
+        }
+    }
+}
+// Supprimer d'un repas
+function deleteMeal()
+{
+    $repasId = $_GET['id'];
+    $result = getDeleteMeal($repasId);
+    if ($result == true || $result == 1) {
+        header('Location: index.php?action=displayDashboard');
+    } else {
+        require './Vue/Error.php';
+    }
+}
 
 // // Afficher la page de modification d'utilisateur
 // function displayEditUser()

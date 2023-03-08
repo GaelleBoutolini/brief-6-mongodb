@@ -20,21 +20,20 @@ try {
         //     displayEditUser();
         // }
         //  else if ($_GET['action'] == 'editUser') {
-        //     editUser();}
-        else if ($_GET['action'] == 'displayEditDeleteMeal') {
+        //     editUser();
+        // }
+         else if ($_GET['action'] == 'displayEditDeleteMeal') {
             displayEditDeleteMeal();
-        }
-        //  else if ($_GET['action'] == 'editMeal') {
-        //     editMeal();}
-        //  else if ($_GET['action'] == 'deleteMeal') {
-        //     deleteMeal();}
-        else if ($_GET['action'] == 'displayDashboard') {
+        } else if ($_GET['action'] == 'editMeal') {
+            editMeal();
+        } else if ($_GET['action'] == 'deleteMeal') {
+            deleteMeal();
+        } else if ($_GET['action'] == 'displayDashboard') {
             displayDashboard();
         } else if ($_GET['action'] == 'logout') {
             logout();
-        }
-        // else
-        //     throw new Exception("Action non valide");
+        } else
+            throw new Exception("Action non valide");
     } else {
         home();  // action par défaut
     }

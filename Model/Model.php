@@ -35,7 +35,6 @@ function getSignup($nom, $prenom, $sexe, $age, $email, $password, $poids, $taill
             'poids' => $poids,
             'taille' => $taille,
             'activite' => $activite,
-            'repas' => []
         ]);
     }
     return $result;
@@ -107,35 +106,42 @@ function getCreateNewMeal($id, $type, $intitule, $calories, $date, $heure)
 function getOneMealInfo($repasId)
 {
     $collection = getConnection()->Repas;
-    $meal = $collection->findOne(["type" => "Collation"]);
+    $meal = $collection->findOne(["_id" => new MongoDB\BSON\ObjectID($repasId)]);
     return $meal;
 }
 
 // // Modification d'un repas
-// function getEditMeal($id, $type, $intitule, $calories, $heureDate)
-// {
-//     $pdo = getConnection();
-//     $query = $pdo->prepare("UPDATE Repas SET Type = :typeRepas, Description = :intitule, Kcal = :calories, Date = :heureDate
-//     WHERE Id_repas = :id");
-//     $query->bindParam(':id', $id);
-//     $query->bindParam(':typeRepas', $type);
-//     $query->bindParam(':intitule', $intitule);
-//     $query->bindParam(':calories', $calories);
-//     $query->bindParam(':heureDate', $heureDate);
-//     $result = $query->execute();
-//     return $result;
-// }
+function getEditMeal($id, $type, $intitule, $calories, $date, $heure)
+{
+    echo $id .'<br>';
+    echo $type .'<br>';
+    echo $intitule .'<br>';
+    echo $calories .'<br>';
+    echo $date .'<br>';
+    echo $heure .'<br>';
 
-// // Modification d'un repas
-// function getDeleteMeal($id)
-// {
-//     $pdo = getConnection();
-//     $query = $pdo->prepare("DELETE FROM Repas WHERE Id_repas = :id");
-//     $query->bindParam(':id', $id);
+    $collection = getConnection()->Repas;
 
-//     $result = $query->execute();
-//     return $result;
-// }
+    $result = $collection->updateOne(
+        ["_id" => new MongoDB\BSON\ObjectID($id)],
+        ['$set' => [
+        'type' => $type,
+        'description' => $intitule,
+        'kcal' => $calories,
+        'date' => $date,
+        'heure' => $heure
+    ]]);
+
+    return $result;
+}
+
+// Modification d'un repas
+function getDeleteMeal($repasId)
+{
+    $collection = getConnection()->Repas;
+    $result = $collection->deleteOne(["_id" => new MongoDB\BSON\ObjectID($repasId)]);
+    return $result;
+}
 
 // function getEditUser($id, $nom, $prenom, $sexe, $age, $email, $password, $poids, $taille, $activite)
 // {
