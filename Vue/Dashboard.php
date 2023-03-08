@@ -62,13 +62,13 @@
                         <a href="./index.php?action=displayEditUser"><i class="fa-solid fa-pen"></i></a>
                     </div>
                     <div class="information">
-                        <p><?= $userInfo["Nom"] ?></p>
-                        <p><?= $userInfo["Prenom"] ?></p>
-                        <p><?= $userInfo["Taille"] ?> cm</p>
-                        <p><?= $userInfo["Poids"] ?> kg</p>
+                        <p><?= $userInfo["nom"] ?></p>
+                        <p><?= $userInfo["prenom"] ?></p>
+                        <p><?= $userInfo["taille"] ?> cm</p>
+                        <p><?= $userInfo["poids"] ?> kg</p>
                         <p>IMC : <?= $imc ?></p>
                         <p><?= $physique ?></p>
-                        <p><?= $userInfo["Activite"] ?></p>
+                        <p><?= $userInfo["activite"] ?></p>
                     </div>
                 </section>
             </div>

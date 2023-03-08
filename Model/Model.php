@@ -1,5 +1,5 @@
 <?php
-require './Model/env.php';
+// require './Model/env.php';
 require 'vendor/autoload.php'; // Inclure l'autoloader de l'extension MongoDB
 
 // Etablir la connexion avec la base données
@@ -80,14 +80,12 @@ function getLogin($email, $password)
 //     return $meals;
 // }
 
-//Récupération des données d'un repas 
+//Récupération des info de l'utilisateur 
 function getUserInfo($id)
 {
     $collection = getConnection();
-    $emailExist = $collection->findOne(['email' => $email]);
-    $query->bindParam(':id', $id);
-    $query->execute();
-    $userInfo = $query->fetch(PDO::FETCH_ASSOC);
+    $userInfo = $collection->findOne(['_id' => $id]);
+
     return $userInfo;
 }
 

@@ -4,7 +4,6 @@ session_start();
 
 function home()
 {
-
     require './Vue/Home.php';
 };
 
@@ -70,7 +69,7 @@ function login()
             $userId = getLogin($mail, $password);
 
             if ($userId != NULL) {
-                // $_SESSION['id'] = $userId;
+                $_SESSION['id'] = $userId;
                 header('Location: index.php?action=displayDashboard');
             } else {
                 $erreurConnexion = "Identifiants incorrects";
@@ -83,20 +82,25 @@ function login()
 function displayDashboard()
 {
 
-    // if (!isset($_SESSION['id'])) {
-    //     require './Vue/Home.php';
-    //     header('Location: index.php');
-    // } else {
-    //     $dayDate = date("Y-m-d", time());
-    //     $id = $_SESSION['id'];
+    if (!isset($_SESSION['id'])) {
+        require './Vue/Home.php';
+        header('Location: index.php');
+    } else {
+        $dayDate = date("Y-m-d", time());
+        $id = $_SESSION['id'];
 
     //Fonctions modele (questionne la base de donnée)
 
     //permet d'obtenir les infos des repas du jour
     // $meals = getDayMeals($dayDate, $id);
     //permet d'obtenir les infos de l'user
+
+
     $userInfo = getUserInfo($id);
 
+    foreach($userInfo as $cle => $valeur) {
+        echo $cle . ':' . $valeur . '<br>';
+    }
 
 
     // // Fonctions controleur (utilise les données rendues par le modele pour faire des calculs)
@@ -108,7 +112,7 @@ function displayDashboard()
     // $goalAchieved = isGoalAchieved($dailyCalTotal, $dailyCalGoal);
     // $statsArr = totalTenDaysCalories($dailyCalGoal);
     require './Vue/Dashboard.php';
-    // }
+    }
 }
 
 // Afficher la page d'ajout de repas
@@ -233,7 +237,6 @@ function error($msgErreur)
 {
     require './Vue/Error.php';
 }
-
 
 
 
