@@ -92,7 +92,8 @@ function displayDashboard()
     //Fonctions modele (questionne la base de donnée)
 
     //permet d'obtenir les infos des repas du jour
-    // $meals = getDayMeals($dayDate, $id);
+    $meals = getDayMeals($dayDate, $id);
+    // print($meals);
     //permet d'obtenir les infos de l'user
 
 
@@ -134,29 +135,32 @@ function createMeal()
         $type = $_POST['type'];
         $intitule = $_POST['intitule'];
         $calories = $_POST['calories'];
-        $heureDate = $_POST['heure-date'];
-        $result = getCreateNewMeal($id, $type, $intitule, $calories, $heureDate);
-        if ($result == true || $result == 1) {
+        $date = explode('T', $_POST['heure-date'])[0];
+        $heure = explode('T', $_POST['heure-date'])[1];
+        $result = getCreateNewMeal($id, $type, $intitule, $calories, $date, $heure);
+        if ($result) {
             header('Location: index.php?action=displayDashboard');
+            require './Vue/Dashboard.php';
         } else {
             require './Vue/Error.php';
         }
     }
 }
 
-// // Afficher la page d'ajout de repas
-
-// function displayEditDeleteMeal()
-// {
-//     $repasId = $_GET['id'];
-//     $mealInfo = getOneMealInfo($repasId);
-//     if (!isset($_SESSION['id'])) {
-//         require './Vue/Home.php';
-//         header('Location: index.php');
-//     } else {
-//         require './Vue/EditDeleteMeal.php';
-//     }
-// }
+// Afficher la page d'ajout de repas
+function displayEditDeleteMeal()
+{
+    $repasId = $_GET['id'];
+    $mealInfo = getOneMealInfo($repasId);
+    print_r($mealInfo);
+    if (!isset($_SESSION['id'])) {
+        require './Vue/Home.php';
+        header('Location: index.php');
+    } else {
+        print_r($mealInfo);
+        require './Vue/EditDeleteMeal.php';
+    }
+}
 // // Modifier d'un repas
 // function editMeal()
 // {
@@ -224,13 +228,13 @@ function createMeal()
 //     }
 // }
 
-// // Déconnexion
-// function logout()
-// {
-//     session_unset();
-//     require './Vue/Home.php';
-//     header('Location: index.php');
-// }
+// Déconnexion
+function logout()
+{
+    session_unset();
+    require './Vue/Home.php';
+    header('Location: index.php');
+}
 
 // Erreur
 function error($msgErreur)

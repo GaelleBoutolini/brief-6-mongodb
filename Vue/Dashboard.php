@@ -17,12 +17,11 @@
             <div id="repas">
 
                 <?php foreach ($meals as $meal) : ?>
-
-                    <a class="repas-container" href=./index.php?action=displayEditDeleteMeal&id=<?= $meal['Id_repas'] ?>>
-                        <h3><?= $meal["Type"] ?></h3>
-                        <span class="nom-repas"><?= $meal["Description"] ?></span>
+                    <a class="repas-container" href=./index.php?action=displayEditDeleteMeal&id=<?= $meal['_id'] ?>>
+                        <h3><?= $meal["type"] ?></h3>
+                        <span class="nom-repas"><?= $meal["description"] ?></span>
                         <div>
-                            <span class="kcal"><span><?= $meal["Kcal"] ?>kcal</span></span>
+                            <span class="kcal"><span><?= $meal["kcal"] ?>kcal</span></span>
                             <span class="heure"><?= $meal["heure"] ?></span>
                         </div>
                     </a>
