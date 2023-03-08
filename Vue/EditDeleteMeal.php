@@ -7,8 +7,7 @@
             <div>
                 <label for="type">Type du plat</label>
                 <select name="type" id="type">
-                    value='<?= $mealInfo[0]['Type'] ?>'
-                    <option value='<?= $mealInfo[0]['Type'] ?>'> <?= $mealInfo[0]['Type'] ?> (sélectionné) </option>
+                    <option value='<?= $mealInfo['type'] ?>'> <?= $mealInfo['type'] ?> (sélectionné) </option>
                     <option value='Petit-déj'>Petit-déj</option>
                     <option value="Collation">Collation</option>
                     <option value="Déjeuner">Déjeuner</option>
@@ -19,15 +18,15 @@
             </div>
             <div>
                 <label for="intitule">Intitulé du plat</label>
-                <input value='<?= $mealInfo[0]['Description'] ?>' type="text" id="intitule" name="intitule" required>
+                <input value='<?= $mealInfo['description'] ?>' type="text" id="intitule" name="intitule" required>
             </div>
             <div>
                 <label for="calories">Énergie (kcal)</label>
-                <input value='<?= $mealInfo[0]['Kcal'] ?>' type="text" id="calories" name="calories" required>
+                <input value='<?= $mealInfo['kcal'] ?>' type="text" id="calories" name="calories" required>
             </div>
             <div>
                 <label for="heure-date">Heure et date</label>
-                <input value='<?= $mealInfo[0]['Date'] ?>' type="datetime-local" id="heure-date" name="heure-date" required>
+                <input value='<?= $mealInfo['date'] ?>' type="datetime-local" id="heure-date" name="heure-date" required>
             </div>
             <div class="btn-group">
                 <input id="form-btn" type="submit" value="Sauvegarder">
