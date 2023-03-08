@@ -1,0 +1,340 @@
+/*Loader*/
+#loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff85;
+    animation: disappear 500ms 1000ms forwards;
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        z-index: -1000;    
+    }
+  }
+
+  #loader div{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin: 0 10px;
+  }
+#dot1{
+    background: #5EC2B0;
+    animation: jump 500ms forwards;
+}
+
+#dot2{
+    background: #FFCE61;
+    animation: jump 500ms 250ms forwards;
+}
+
+#dot3{
+    background: #005BE9;
+    animation: jump 500ms 500ms forwards;
+} 
+
+@keyframes jump {
+    0% {
+    
+      transform: translateY(0);
+      
+    }
+    50% {
+      transform: translateY(-50px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  main{
+    background: url('../image/bg10.jpg');
+    background-attachment: fixed ;
+    background-size: 800px;
+}
+
+.container{
+    max-width: 1250px;
+    margin: 30px auto;
+}
+
+h2 {
+    text-align: start;
+    margin: 0;
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+a{
+    text-decoration: none;
+}
+
+ @keyframes slide-top {
+    0% {
+      transform: translateY(500px);
+        opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+/*Historique*/
+section#historique{
+    box-shadow: 0px 0px 5px #bababa;
+    background: white;
+    border-radius: 35px;
+    padding: 5%;
+    margin: 2%;
+    animation: slide-top cubic-bezier(0.250, 0.460, 0.450, 0.940) 800ms 1000ms backwards
+}
+
+span#today{
+    color: #005BE9 ;
+}
+
+#btn-container{
+    margin: 0 2% 20px 2%;
+    display: flex;
+    justify-content: end;
+}
+
+#add-btn{
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    background: linear-gradient(90deg,#019AF1 0%, #005BE9 100%);
+    transition: 300ms;
+    animation: scale 800ms 1000ms backwards
+}
+
+#add-btn:hover{
+    background: linear-gradient(90deg, #005BE9, #019AF1);
+    box-shadow: 5px 5px 2px #FFCE61;
+}
+
+@keyframes scale {
+    0% {
+      transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+/*Repas*/
+#repas{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+#repas .nom-repas{
+   margin-bottom: 30px;
+   font-size: 14px;
+}
+
+.repas-container{
+    position: relative;
+    background: linear-gradient(90deg, #005BE9, #019AF1);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 45%;
+    max-width: 200px;
+    min-height: 130px;
+    color: white;
+    font-weight: 600;
+    padding: 20px 0;
+    margin-right: 15px;
+    margin: 2%;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+.repas-container:hover{
+    background: linear-gradient(90deg, #019AF1, #005BE9);
+    box-shadow: 5px 5px 2px #FFCE61;
+}
+
+.repas-container h3{
+    margin: 0;
+}
+
+.repas-container > div{
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translate(-50%); 
+}
+
+.repas-container .kcal{
+    margin-right: 10px;
+}
+
+.repas-container .heure{
+    margin-left: 10px;
+}
+
+#total-kcal{
+    text-align: end;
+    font-weight: 500;
+}
+
+/*Objectif et profil*/
+#main-bottom {
+    margin: 20px 2% 0 2%;
+}
+
+#objectif-profil{
+    width: 100%;
+}
+
+section#objectif{
+    width: 100%;
+    background: linear-gradient(90deg, #FF0000, #870000);
+    border-radius: 25px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    animation: slide-top cubic-bezier(0.250, 0.460, 0.450, 0.940) 800ms 1200ms backwards
+}
+
+section#objectif.red{
+    background: linear-gradient(90deg, #FF0000, #870000);
+}
+
+section#objectif.green{
+    background: linear-gradient(90deg, #2D8878, #00C6A2);
+}
+
+#objectif-calorie div{
+    margin: 10px 0;
+    text-align: center;
+}
+
+section#profil{
+    box-shadow: 0px 0px 5px #bababa;
+    background: linear-gradient(90deg,#005BE9 0%, #005BE9 100%);
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+    text-align: center;
+    font-weight: 600;
+    margin: 20px 0;
+    animation: slide-top cubic-bezier(0.250, 0.460, 0.450, 0.940) 800ms 1400ms backwards
+}
+
+
+#profil h2{
+    color: white;
+}
+
+.title{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.title a{
+    border-radius: 50px;
+    padding: 5px 7px;
+    transition: 500ms;
+}
+
+.title a:hover{
+    background: white;
+}
+
+.title a:hover > i{
+    color: #005BE9;
+}
+
+.fa-pen{
+    color: white;
+}
+
+.information p{
+    background-color: white;
+    border-radius: 15px;
+    padding: 8px;
+}
+
+/*Stats*/
+section#stats{
+ padding: 30px 10px;
+height: fit-content;
+ width: 100%;
+ background: white;
+ box-shadow: 0px 0px 5px #bababa;
+ border-radius: 25px;
+ animation: slide-top cubic-bezier(0.250, 0.460, 0.450, 0.940) 800ms 1600ms backwards
+}
+
+section#stats h2{
+    text-align: center;
+    color: #000000;
+    margin: 0 10px 10px 10px;
+}
+
+
+/*Responsive*/
+@media(min-width:768px){
+    main{
+        background-size: 1250px;
+    }
+    #main-bottom {
+        display: flex;
+    }
+    /*Historique*/
+    section#historique{
+        padding: 15px 3%;
+    }
+    #repas{
+        justify-content: initial;
+        margin:  0;
+    }
+    .repas-container{
+        width: 160px;
+    }
+
+    /*Objectif et profil*/
+    #objectif-profil{
+        width: 30%;
+        min-width: 270px;
+    }
+
+    /*Stats*/
+    section#stats{
+        width: 70%;
+        margin: 0 0 0 2%;
+    }
+  
+}

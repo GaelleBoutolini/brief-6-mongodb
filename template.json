@@ -1,0 +1,19 @@
+[{
+ "Id" : "1" ,
+ "Nom" : "Lacroix",
+ "Prenom" : "Audrey",
+ "Sexe" : "Homme",
+ "Age" : "27",
+ "Email" : "audrey.lacroix@example.com",
+ "Mdp" : "motdepasse",
+ "Poids" : "76",
+ "Taille" : "165",
+ "Activité" : "Légèrement actif",
+ "Repas" : [{
+    "Id" : "56",
+    "Type" : "Petit-Déj",
+    "Description" : "Croissant",
+    "Kcal" : "250",
+    "Date " : "2023-02-24 08:00:00"
+    }]
+}]

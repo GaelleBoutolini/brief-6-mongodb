@@ -1,0 +1,259 @@
+/* ------------------------général */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+
+*{
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+
+/*Général*/
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 370px ;
+}
+
+h2 {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 20px;
+    color: #0169EB
+}
+/* ---------------------------header */
+
+#header {
+    /* height: 9.89vh; */
+    height: 100px;
+    background: linear-gradient(31deg, #0072D2 0%, #0072D2 15%, #0093F1 15%, #0093F1 60%, #0072D2 60%, #0072D2);
+    position: relative;
+}
+
+#logoDivHeader {
+    display: flex;
+    position: relative;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 200px;
+    background-color: azure;
+    align-items: center;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+#logoImage {
+    height: 70px;
+}
+
+#logoText {
+    font-size: 30px;
+    font-weight: bold;
+    color: #5EC2B0;
+    margin: 0;
+}
+
+/* -----------------------------main */
+
+main {
+    min-height: 77vh;   
+}
+
+/* -----------------------------footer */
+
+footer {
+    /* height: 24.91vh; */
+    position: relative;
+    z-index: 2;
+    padding-bottom: 50px;
+    background-image: linear-gradient(31deg, #009BF1 0%, #1e6add 80%, #005BE9 80%, #005BE9);
+}
+
+.logo{
+    margin-right: 10%;
+}
+
+#logoDivFooter {
+    display: flex;
+    position: relative;
+    left: 0px;
+    top: 34px;
+    z-index: 1;
+    width: 200px;
+    font-size: 20px;
+    background-color: azure;
+    align-items: center;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+#logoImage {
+    height: 50px;
+}
+
+#logoText {
+    font-size: 20px;
+    font-weight: bold;
+    color: #5EC2B0;
+    margin: 0;
+}
+
+#footerText {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 50px;
+}
+
+#footerTextLeft {
+    width: 230px;
+    margin-left: 20px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-weight: bold
+}
+
+#footerTextLeft p {
+    color: white !important;
+    margin: 10px;
+}
+
+
+#footerTextRight {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    margin-right: 20px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+#footerTextRight p{
+    margin: 10px 0;
+    color: white !important;
+}
+
+#footerTextRight p:nth-child(3){
+    margin: 10px 0;
+    color: white !important;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#footerTextRight a{
+    color: white !important;
+}
+
+#footerTextRight .network-links{
+    display: flex;
+    margin: 0 5px;
+}
+
+#footerTextRight .network-links a{
+    width: 25px;
+    height: 25px;
+    background: azure;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    margin: 3px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 1000ms;
+}
+
+#footerTextRight .network-links a i{
+    color: black
+}
+
+#footerTextRight .network-links a:hover{
+    transform: scale(1.05);
+    background: black;
+    transform: rotateY(360deg);
+}
+
+#footerTextRight .network-links a:hover > i{
+    color: white;
+}
+
+.logout{
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    border-radius: 50px;
+    padding: 10px;
+    transition: 500ms;
+}
+
+.logout:hover{
+    background: white;
+    color: #5EC2B0 ;
+    cursor: pointer;
+}
+
+@media(min-width: 768px){
+    footer {
+        display: flex;
+        padding-top: 50px;
+    }
+
+    #logoDivFooter {
+        top: 0px;
+    }
+
+    #footerText {
+        justify-content: space-between ;
+        width: 50%;
+        margin-top: 0;
+    }
+
+    #logoDivHeader {
+        display: flex;
+        position: relative;
+        left: 0px;
+        top: 34px;
+        z-index: 1;
+        width: 260px;
+        background-color: azure;
+        align-items: center;
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+        transform: none;
+    }
+
+    #logoDivFooter {
+        display: flex;
+        position: relative;
+        left: 0px;
+        top: 0;
+        z-index: 1;
+        width: 260px;
+        background-color: azure;
+        align-items: center;
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+    }
+    
+    #logoImage {
+        height: 70px;
+    }
+
+    #logoText {
+        font-size: 30px;
+    }
+
+    #header {
+        /* height: 9.89vh; */
+        height: 135px;
+    }
+}

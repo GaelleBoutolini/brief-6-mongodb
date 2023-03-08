@@ -1,0 +1,171 @@
+main{
+    background-image: url('../image/bg10.jpg');
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-attachment: fixed ;
+    background-size: 800px;
+}
+
+.container {
+    margin: 5px;
+    animation: slide-top cubic-bezier(0.250, 0.460, 0.450, 0.940) 800ms backwards
+}
+
+main p {
+    text-align: center;
+    margin-bottom: 10px;
+    color: black;
+    font-size: 16px;
+    font-size: 500;
+
+}
+
+main p a{
+    color: #005BE9;
+    text-decoration: none;
+}
+
+main p a:hover{
+    text-decoration: underline;
+}
+
+#empty{
+    margin: 50px;
+}
+
+form {
+    background: white;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 5px 10px #b8b8b8;
+    width: 95%;
+    margin: 50px auto  10px auto;
+    border-radius: 30px;
+    padding: 40px 0;
+}
+
+@keyframes slide-top {
+    0% {
+      transform: translateY(500px);
+        opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+@keyframes scale {
+    0% {
+      transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+form > div{
+    width: 85%;
+}
+
+
+
+label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input[type="date"],
+input[type="datetime-local"],
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+form .btn-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+#form-btn{
+    width: 40%;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    background: linear-gradient(90deg,#019AF1 0%, #005BE9 100%);
+    transition: 300ms;
+    margin-right: 2% ;
+}
+
+#form-btn:hover{
+    background: linear-gradient(90deg, #005BE9, #019AF1);
+    box-shadow: 5px 5px 2px #FFCE61;
+}
+
+.fa-trash{
+    font-size: 18px;
+    color: white;
+}
+
+#del-btn{
+    background: linear-gradient(90deg, #FF0000, #870000);
+    font-weight: 500;
+    padding: 11px 15px;
+    border-radius: 20px;
+    margin-right: 2%;
+    transition: 300ms;
+}
+
+#del-btn:hover{
+    background: linear-gradient(90deg, #870000, #FF0000 );
+    box-shadow: 5px 5px 2px #FFCE61;
+
+}
+
+ .success-msg{
+    font-size: 20px;
+    font-weight: 500;
+ }
+
+ .success-msg a:hover{
+    background: linear-gradient(90deg,#019AF1 0%, #005BE9 100%);
+    color: white;
+    text-decoration: none;
+    margin-left: 5px;
+    transition: 500ms;
+ }
+
+
+@media (min-width: 768px){
+    main{
+        background-size: 1250px;
+    }
+    .flex-50 {
+        display: flex;
+        justify-content: space-between;
+    }
+    .flex-50 div{
+        width: 48%;
+    }
+}
