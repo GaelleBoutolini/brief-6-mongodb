@@ -85,6 +85,8 @@ function displayDashboard()
         require './Vue/Home.php';
         header('Location: index.php');
     } else {
+
+
         $dayDate = date("Y-m-d", time());
         $id = $_SESSION['id'];
 
@@ -93,9 +95,8 @@ function displayDashboard()
     //permet d'obtenir les infos des repas du jour
     $meals = getDayMeals($dayDate, $id);
     // print_r($meals);
+
     //permet d'obtenir les infos de l'user
-
-
     $userInfo = getUserInfo($id);
 
     // foreach($userInfo as $cle => $valeur) {
@@ -107,7 +108,8 @@ function displayDashboard()
     $imc = round(imc($userInfo), 1);
     $physique = whatPhysique($imc);
 
-    $dailyCalTotal = dailyCaloriesTotal($meals);
+    // $dailyCalTotal = dailyCaloriesTotal($meals);
+
     $dailyCalGoal = dailyCaloriesGoal($userInfo);
     $goalAchieved = isGoalAchieved($dailyCalTotal, $dailyCalGoal);
     $statsArr = totalTenDaysCalories($dailyCalGoal);
@@ -194,43 +196,43 @@ function deleteMeal()
     }
 }
 
-// // Afficher la page de modification d'utilisateur
-// function displayEditUser()
-// {
-//     if (!isset($_SESSION['id'])) {
-//         require './Vue/Home.php';
-//         header('Location: index.php');
-//     } else {
-//         $id = $_SESSION['id'];
-//         $userChangeInfo = getUserChangeInfo($id);
-//         require './Vue/EditUser.php';
-//     }
-// }
+// Afficher la page de modification d'utilisateur
+function displayEditUser()
+{
+    if (!isset($_SESSION['id'])) {
+        require './Vue/Home.php';
+        header('Location: index.php');
+    } else {
+        $id = $_SESSION['id'];
+        $userChangeInfo = getUserChangeInfo($id);
+        require './Vue/EditUser.php';
+    }
+}
 
 // // Modification d'un utilisateur 
-// function editUser()
-// {
-//     $id = $_SESSION['id'];
+function editUser()
+{
+    $id = $_SESSION['id'];
 
-//     if (!empty($_POST)) {
-//         $nom = $_POST['nom'];
-//         $prenom = $_POST['prenom'];
-//         $sexe = $_POST['sexe'];
-//         $age = $_POST['age'];
-//         $email = $_POST['email'];
-//         $password = $_POST['password'];
-//         $poids = $_POST['poids'];
-//         $taille = $_POST['taille'];
-//         $activite = $_POST['activite'];
+    if (!empty($_POST)) {
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $sexe = $_POST['sexe'];
+        $age = $_POST['age'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $poids = $_POST['poids'];
+        $taille = $_POST['taille'];
+        $activite = $_POST['activite'];
 
-//         $result = getEditUser($id, $nom, $prenom, $sexe, $age, $email, $password, $poids, $taille, $activite);
-//         if ($result === true) {
-//             header('Location: index.php?action=displayDashboard');
-//         } else {
-//             require './Vue/Error.php';
-//         }
-//     }
-// }
+        $result = getEditUser($id, $nom, $prenom, $sexe, $age, $email, $password, $poids, $taille, $activite);
+        if ($result == true || $result == 1) {
+            header('Location: index.php?action=displayDashboard');
+        } else {
+            require './Vue/Error.php';
+        }
+    }
+}
 
 // Déconnexion
 function logout()
@@ -248,11 +250,12 @@ function error($msgErreur)
 
 
 
-// //Fonctions de calcul
-// //--------------------------------------
+//Fonctions de calcul
+//--------------------------------------
 
-// // Calcul de l'imc 
-// // Poids / (Taille * Taille)
+// Calcul de l'imc 
+// Poids / (Taille * Taille)
+
 function imc($userInfo)
 {
     $weight = $userInfo["poids"];
@@ -262,8 +265,6 @@ function imc($userInfo)
 
     return $imc;
 }
-
-
 
 // // Défini la forme physique du user en fonction de son imc
 function whatPhysique($imc)
@@ -304,9 +305,32 @@ function whatPhysique($imc)
 function dailyCaloriesTotal($meals)
 {
     $total = 0;
-    foreach ($meals as $meal) {
-        $total += $meal['kcal'];
+    // foreach ($meals as $meal) {
+    //     $total += $meal['kcal'];
+    // }
+
+    // foreach($meals as $cle => $valeur) {
+    //     if($cle === "kcal") {
+    //         $total += $valeur;
+    //     }
+    // }
+    
+    // foreach($meals as $cle => $valeur) {
+    //     print_r($valeur);
+    // }
+
+    // foreach($meals as $cle => $valeur) {
+    //     $total += $valeur->kcal;
+    // }
+    // $total = intval($total);
+    // echo $total;
+
+    foreach ($meals as $objet) {
+        $total += $objet['kcal'];
     }
+    echo 'Total des kcal : ' . $total;
+
+
     return $total;
 }
 

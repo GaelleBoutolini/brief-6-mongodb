@@ -5,20 +5,20 @@
             <h2>Modification du profil</h2>
             <div>
                 <label for="nom">Nom</label>
-                <input type="text" id="nom" name="nom" value="<?= $userChangeInfo['Nom'] ?>" required>
+                <input type="text" id="nom" name="nom" value="<?= $userChangeInfo['nom'] ?>" required>
             </div>
             <div>
                 <label for="prenom">Prénom</label>
-                <input type="text" id="prenom" name="prenom" value="<?= $userChangeInfo['Prenom'] ?>" required>
+                <input type="text" id="prenom" name="prenom" value="<?= $userChangeInfo['prenom'] ?>" required>
             </div>
             <div>
                 <label for="email">Adresse e-mail</label>
-                <input type="email" id="email" name="email" value="<?= $userChangeInfo['Email'] ?>" required>
+                <input type="email" id="email" name="email" value="<?= $userChangeInfo['email'] ?>" required>
             </div>
             <div class="flex-50">
                 <div>
                     <label for="sexe">Sexe</label>
-                    <select name="sexe" id="sexe" value="<?= $userChangeInfo['Sexe'] ?>">
+                    <select name="sexe" id="sexe" value="<?= $userChangeInfo['sexe'] ?>">
                         <option value="M">M</option>
                         <option value="F">F</option>
                     </select>
@@ -26,24 +26,24 @@
 
                 <div>
                     <label for="age">Age</label>
-                    <input type="number" id="naissance" name="age" value="<?= $userChangeInfo['Age'] ?>" required>
+                    <input type="number" id="naissance" name="age" value="<?= $userChangeInfo['age'] ?>" required>
                 </div>
             </div>
             <div class="flex-50">
                 <div>
                     <label for="poids">Poids</label>
-                    <input type="number" id="poids" name="poids" min="0" value="<?= $userChangeInfo['Poids'] ?>" required>
+                    <input type="number" id="poids" name="poids" min="0" value="<?= $userChangeInfo['poids'] ?>" required>
                 </div>
 
                 <div>
                     <label for="taille">Taille(cm)</label>
-                    <input type="number" id="taille" name="taille" min="0" value="<?= $userChangeInfo['Taille'] ?>" required>
+                    <input type="number" id="taille" name="taille" min="0" value="<?= $userChangeInfo['taille'] ?>" required>
                 </div>
             </div>
             <div>
                 <label for="activite">Activité</label>
                 <select name="activite" id="activite">
-                    <option value="<?= $userChangeInfo['Activite'] ?>"><?= $userChangeInfo['Activite'] ?> (Séléctionné)</option>
+                    <option value="<?= $userChangeInfo['activite'] ?>"><?= $userChangeInfo['activite'] ?> (Séléctionné)</option>
                     <option value="Sédentaire">Sédentaire</option>
                     <option value="Légèrement actif">Légèrement actif</option>
                     <option value="Plutôt actif">Plutôt actif</option>

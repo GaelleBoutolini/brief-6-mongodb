@@ -16,12 +16,12 @@ try {
         } else if ($_GET['action'] == 'createMeal') {
             createMeal();
         }
-        // else if ($_GET['action'] == 'displayEditUser') {
-        //     displayEditUser();
-        // }
-        //  else if ($_GET['action'] == 'editUser') {
-        //     editUser();
-        // }
+        else if ($_GET['action'] == 'displayEditUser') {
+            displayEditUser();
+        }
+         else if ($_GET['action'] == 'editUser') {
+            editUser();
+        }
          else if ($_GET['action'] == 'displayEditDeleteMeal') {
             displayEditDeleteMeal();
         } else if ($_GET['action'] == 'editMeal') {
