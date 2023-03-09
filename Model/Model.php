@@ -80,8 +80,9 @@ function getDayMeals($dayDate, $id)
         "id_user" => $id,
         "date" => $dayDate
     ]);
+    $mealsArr =  iterator_to_array($meals);
 
-    return $meals;
+    return $mealsArr;
 }
 
 // //Récupération des données d'un repas 

@@ -96,18 +96,18 @@ function displayDashboard()
     $meals = getDayMeals($dayDate, $id);
     //permet d'obtenir les infos de l'user
 
-
+// print_r($meals);
     $userInfo = getUserInfo($id);
-    foreach($userInfo as $cle => $valeur) {
-        echo $cle . ':' . $valeur . '<br>';
-    }
+    // foreach($userInfo as $cle => $valeur) {
+    //     echo $cle . ':' . $valeur . '<br>';
+    // }
 
 
     // // Fonctions controleur (utilise les données rendues par le modele pour faire des calculs)
     $imc = round(imc($userInfo), 1);
-    // $physique = whatPhysique($imc);
+    $physique = whatPhysique($imc);
 
-    // $dailyCalTotal = dailyCaloriesTotal($meals);
+    $dailyCalTotal = dailyCaloriesTotal($meals);
     // $dailyCalGoal = dailyCaloriesGoal($userInfo);
     // $goalAchieved = isGoalAchieved($dailyCalTotal, $dailyCalGoal);
     // $statsArr = totalTenDaysCalories($dailyCalGoal);
@@ -264,56 +264,60 @@ function imc($userInfo)
     return $imc;
 }
 
-// // Défini la forme physique du user en fonction de son imc
-// function whatPhysique($imc)
-// {
-//     $physique = 0;
-//     switch ($imc) {
-//         case ($imc < 16.5):
-//             $physique = "Anorexie ou dénutrition";
-//             break;
-//         case ($imc >= 16.5 && $imc < 18.5):
-//             $physique = "Insuffisance Ponderale";
-//             break;
-//         case ($imc >= 18.5 && $imc < 25):
-//             $physique = "Corpulence normale";
-//             break;
-//         case ($imc >= 25 && $imc < 30):
-//             $physique = "Surpoids";
-//             break;
-//         case ($imc >= 30 && $imc < 35):
-//             $physique = "Obésité modérée (Classe 1)";
-//             break;
-//         case ($imc >= 35 && $imc < 40):
-//             $physique = "Obésité élevé (Classe 2)";
-//             break;
-//         case ($imc >= 40):
-//             $physique = "Obésite morbide ou massive";
-//             break;
-//         default:
-//             $physique = "Non Renseigné";
-//             break;
-//     }
-//     return $physique;
-// }
-// // Calcul le total de calories consommé dans la journée
-// function dailyCaloriesTotal($meals)
-// {
-//     $total = 0;
-//     foreach ($meals as $meal) {
-//         $total += $meal['Kcal'];
-//     }
-//     return $total;
-// }
+// Défini la forme physique du user en fonction de son imc
+function whatPhysique($imc)
+{
+    $physique = 0;
+    switch ($imc) {
+        case ($imc < 16.5):
+            $physique = "Anorexie ou dénutrition";
+            break;
+        case ($imc >= 16.5 && $imc < 18.5):
+            $physique = "Insuffisance Ponderale";
+            break;
+        case ($imc >= 18.5 && $imc < 25):
+            $physique = "Corpulence normale";
+            break;
+        case ($imc >= 25 && $imc < 30):
+            $physique = "Surpoids";
+            break;
+        case ($imc >= 30 && $imc < 35):
+            $physique = "Obésité modérée (Classe 1)";
+            break;
+        case ($imc >= 35 && $imc < 40):
+            $physique = "Obésité élevé (Classe 2)";
+            break;
+        case ($imc >= 40):
+            $physique = "Obésite morbide ou massive";
+            break;
+        default:
+            $physique = "Non Renseigné";
+            break;
+    }
+    return $physique;
+}
+// Calcul le total de calories consommé dans la journée
+function dailyCaloriesTotal($meals)
+{
+    $total = 0;
+
+ 
+    foreach ($meals as $meal){
+        $total += $meal["kcal"];
+    }
+    print_r($mealsArr);
+
+    return  800;
+}
 // // Calcul la limite calorique pour perdre du poids
 // // Méthode oxford : (14.2 x Poids + 593) * coef;
 // function dailyCaloriesGoal($userInfo)
 // {
 //     // Calcul du métabolisme de base
-//     $MB = 14.2 * $userInfo['Poids'] + 593;
+//     $MB = 14.2 * $userInfo['poids'] + 593;
 //     // Calcul du coef en fonction de l'activité
 //     $coef = 0;
-//     switch ($userInfo['Activite']) {
+//     switch ($userInfo['activite']) {
 //         case 'Sédentaire':
 //             $coef = 1.2;
 //             break;
