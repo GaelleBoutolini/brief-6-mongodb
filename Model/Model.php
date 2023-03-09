@@ -1,5 +1,5 @@
 <?php
-require './Model/env.php';
+// require './Model/env.php';
 require 'vendor/autoload.php'; // Inclure l'autoloader de l'extension MongoDB
 
 // Etablir la connexion avec la base données
@@ -57,6 +57,17 @@ function getLogin($email, $password)
     }
     return $result;
 }
+
+// Récupération des info de l'utilisateur
+
+function getUserInfo($id)
+{
+    $collection = getConnection()->User;
+    $userInfo = $collection->findOne(['_id' => $id]);
+
+    return $userInfo;
+}
+
 
 // Récupération de tous les repas d'une journée 
 function getDayMeals($dayDate, $id)

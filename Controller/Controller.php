@@ -85,18 +85,26 @@ function displayDashboard()
         require './Vue/Home.php';
         header('Location: index.php');
     } else {
-    $dayDate = date("Y-m-d", time());
-    $id = $_SESSION['id'];
+
+
+        $dayDate = date("Y-m-d", time());
+        $id = $_SESSION['id'];
 
     //Fonctions modele (questionne la base de donnée)
 
     //permet d'obtenir les infos des repas du jour
     $meals = getDayMeals($dayDate, $id);
     //permet d'obtenir les infos de l'user
-    // $userInfo = getUserInfo($id);
+
+
+    $userInfo = getUserInfo($id);
+    foreach($userInfo as $cle => $valeur) {
+        echo $cle . ':' . $valeur . '<br>';
+    }
+
 
     // // Fonctions controleur (utilise les données rendues par le modele pour faire des calculs)
-    // $imc = round(imc($userInfo), 1);
+    $imc = round(imc($userInfo), 1);
     // $physique = whatPhysique($imc);
 
     // $dailyCalTotal = dailyCaloriesTotal($meals);
@@ -240,22 +248,21 @@ function error($msgErreur)
 
 
 
+//Fonctions de calcul
+//--------------------------------------
 
-// //Fonctions de calcul
-// //--------------------------------------
+// Calcul de l'imc 
+// Poids / (Taille * Taille)
 
-// // Calcul de l'imc 
-// // Poids / (Taille * Taille)
+function imc($userInfo)
+{
+    $weight = $userInfo["poids"];
+    $size = $userInfo["taille"] / 100;
 
-// function imc($userInfo)
-// {
-//     $weight = $userInfo["Poids"];
-//     $size = $userInfo["Taille"] / 100;
+    $imc = $weight / ($size * $size);
 
-//     $imc = $weight / ($size * $size);
-
-//     return $imc;
-// }
+    return $imc;
+}
 
 // // Défini la forme physique du user en fonction de son imc
 // function whatPhysique($imc)
