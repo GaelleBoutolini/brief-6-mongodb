@@ -98,19 +98,19 @@ function displayDashboard()
 
     $userInfo = getUserInfo($id);
 
-    foreach($userInfo as $cle => $valeur) {
-        echo $cle . ':' . $valeur . '<br>';
-    }
+    // foreach($userInfo as $cle => $valeur) {
+    //     echo $cle . ':' . $valeur . '<br>';
+    // }
 
 
     // // Fonctions controleur (utilise les données rendues par le modele pour faire des calculs)
-    // $imc = round(imc($userInfo), 1);
-    // $physique = whatPhysique($imc);
+    $imc = round(imc($userInfo), 1);
+    $physique = whatPhysique($imc);
 
-    // $dailyCalTotal = dailyCaloriesTotal($meals);
-    // $dailyCalGoal = dailyCaloriesGoal($userInfo);
-    // $goalAchieved = isGoalAchieved($dailyCalTotal, $dailyCalGoal);
-    // $statsArr = totalTenDaysCalories($dailyCalGoal);
+    $dailyCalTotal = dailyCaloriesTotal($meals);
+    $dailyCalGoal = dailyCaloriesGoal($userInfo);
+    $goalAchieved = isGoalAchieved($dailyCalTotal, $dailyCalGoal);
+    $statsArr = totalTenDaysCalories($dailyCalGoal);
     require './Vue/Dashboard.php';
     }
 }
@@ -253,119 +253,131 @@ function error($msgErreur)
 
 // // Calcul de l'imc 
 // // Poids / (Taille * Taille)
+function imc($userInfo)
+{
+    $weight = $userInfo["poids"];
+    $size = $userInfo["taille"] / 100;
 
-// function imc($userInfo)
-// {
-//     $weight = $userInfo["Poids"];
-//     $size = $userInfo["Taille"] / 100;
+    $imc = $weight / ($size * $size);
 
-//     $imc = $weight / ($size * $size);
+    return $imc;
+}
 
-//     return $imc;
-// }
+
 
 // // Défini la forme physique du user en fonction de son imc
-// function whatPhysique($imc)
-// {
-//     $physique = 0;
-//     switch ($imc) {
-//         case ($imc < 16.5):
-//             $physique = "Anorexie ou dénutrition";
-//             break;
-//         case ($imc >= 16.5 && $imc < 18.5):
-//             $physique = "Insuffisance Ponderale";
-//             break;
-//         case ($imc >= 18.5 && $imc < 25):
-//             $physique = "Corpulence normale";
-//             break;
-//         case ($imc >= 25 && $imc < 30):
-//             $physique = "Surpoids";
-//             break;
-//         case ($imc >= 30 && $imc < 35):
-//             $physique = "Obésité modérée (Classe 1)";
-//             break;
-//         case ($imc >= 35 && $imc < 40):
-//             $physique = "Obésité élevé (Classe 2)";
-//             break;
-//         case ($imc >= 40):
-//             $physique = "Obésite morbide ou massive";
-//             break;
-//         default:
-//             $physique = "Non Renseigné";
-//             break;
-//     }
-//     return $physique;
-// }
+function whatPhysique($imc)
+{
+    $physique = 0;
+    switch ($imc) {
+        case ($imc < 16.5):
+            $physique = "Anorexie ou dénutrition";
+            break;
+        case ($imc >= 16.5 && $imc < 18.5):
+            $physique = "Insuffisance Ponderale";
+            break;
+        case ($imc >= 18.5 && $imc < 25):
+            $physique = "Corpulence normale";
+            break;
+        case ($imc >= 25 && $imc < 30):
+            $physique = "Surpoids";
+            break;
+        case ($imc >= 30 && $imc < 35):
+            $physique = "Obésité modérée (Classe 1)";
+            break;
+        case ($imc >= 35 && $imc < 40):
+            $physique = "Obésité élevé (Classe 2)";
+            break;
+        case ($imc >= 40):
+            $physique = "Obésite morbide ou massive";
+            break;
+        default:
+            $physique = "Non Renseigné";
+            break;
+    }
+    return $physique;
+}
+
+
+
 // // Calcul le total de calories consommé dans la journée
-// function dailyCaloriesTotal($meals)
-// {
-//     $total = 0;
-//     foreach ($meals as $meal) {
-//         $total += $meal['Kcal'];
-//     }
-//     return $total;
-// }
+function dailyCaloriesTotal($meals)
+{
+    $total = 0;
+    foreach ($meals as $meal) {
+        $total += $meal['Kcal'];
+    }
+    return $total;
+}
+
+
+
 // // Calcul la limite calorique pour perdre du poids
 // // Méthode oxford : (14.2 x Poids + 593) * coef;
-// function dailyCaloriesGoal($userInfo)
-// {
-//     // Calcul du métabolisme de base
-//     $MB = 14.2 * $userInfo['Poids'] + 593;
-//     // Calcul du coef en fonction de l'activité
-//     $coef = 0;
-//     switch ($userInfo['Activite']) {
-//         case 'Sédentaire':
-//             $coef = 1.2;
-//             break;
-//         case 'Légèrement actif':
-//             $coef = 1.375;
-//             break;
-//         case "Plutôt actif":
-//             $coef = 1.55;
-//             break;
-//         case "Actif":
-//             $coef = 1.725;
-//             break;
-//         case "Trés actif":
-//             $coef = 1.9;
-//             break;
-//     }
-//     $dailyCaloriesGoal = $MB * $coef;
-//     return round($dailyCaloriesGoal);
-// }
-// // Vérifie si l'objectif a été réussi ou non
-// function isGoalAchieved($dailyCalTotal, $dailyCalGoal)
-// {
-//     $isGoalAchieved = true;
-//     if ($dailyCalTotal > $dailyCalGoal) {
-//         $isGoalAchieved = false;
-//     } else {
-//         $isGoalAchieved = true;
-//     }
-//     return $isGoalAchieved;
-// }
+function dailyCaloriesGoal($userInfo)
+{
+    // Calcul du métabolisme de base
+    $MB = 14.2 * $userInfo['poids'] + 593;
+    // Calcul du coef en fonction de l'activité
+    $coef = 0;
+    switch ($userInfo['activite']) {
+        case 'Sédentaire':
+            $coef = 1.2;
+            break;
+        case 'Légèrement actif':
+            $coef = 1.375;
+            break;
+        case "Plutôt actif":
+            $coef = 1.55;
+            break;
+        case "Actif":
+            $coef = 1.725;
+            break;
+        case "Trés actif":
+            $coef = 1.9;
+            break;
+    }
+    $dailyCaloriesGoal = $MB * $coef;
+    return round($dailyCaloriesGoal);
+}
+
+
+
+// Vérifie si l'objectif a été réussi ou non
+function isGoalAchieved($dailyCalTotal, $dailyCalGoal)
+{
+    $isGoalAchieved = true;
+    if ($dailyCalTotal > $dailyCalGoal) {
+        $isGoalAchieved = false;
+    } else {
+        $isGoalAchieved = true;
+    }
+    return $isGoalAchieved;
+}
+
+
 
 // // Calcul des calories des 10 derniers jours
-// function totalTenDaysCalories($dailyCalGoal)
-// {
-//     $today = time();
-//     $id = $_SESSION['id'];
-//     $daysArr = [];
-//     $caloriesGoalArr = [];
-//     $lastTenDayCaloriesArr = [];
-//     for ($i = 0; $i < 10; $i++) {
-//         array_unshift($daysArr, date("d/m", $today));
+function totalTenDaysCalories($dailyCalGoal)
+{
+    $today = time();
+    $id = $_SESSION['id'];
+    $daysArr = [];
+    $caloriesGoalArr = [];
+    $lastTenDayCaloriesArr = [];
+    for ($i = 0; $i < 10; $i++) {
+        array_unshift($daysArr, date("d/m", $today));
 
-//         // Courbe consommation calorique
-//         $dayDate = date("Y-m-d", $today);
-//         $meals = getDayMeals($dayDate, $id);
-//         array_unshift($lastTenDayCaloriesArr,  dailyCaloriesTotal($meals));
-//         $today -= 86400;
+        // Courbe consommation calorique
+        $dayDate = date("Y-m-d", $today);
+        $meals = getDayMeals($dayDate, $id);
+        array_unshift($lastTenDayCaloriesArr,  dailyCaloriesTotal($meals));
+        $today -= 86400;
 
-//         // Courbe objectif
-//         array_unshift($caloriesGoalArr, $dailyCalGoal);
-//     };
-//     $statsArr[] = [$lastTenDayCaloriesArr, $caloriesGoalArr, $daysArr];
-//     return $statsArr;
-//     //retourne un tableau avec le total calorique des derniers 10 jours
-// }
+        // Courbe objectif
+        array_unshift($caloriesGoalArr, $dailyCalGoal);
+    };
+    $statsArr[] = [$lastTenDayCaloriesArr, $caloriesGoalArr, $daysArr];
+    return $statsArr;
+    //retourne un tableau avec le total calorique des derniers 10 jours
+}
