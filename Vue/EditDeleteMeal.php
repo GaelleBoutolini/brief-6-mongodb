@@ -26,7 +26,7 @@
             </div>
             <div>
                 <label for="heure-date">Heure et date</label>
-                <input value='<?= $mealInfo['date'] ?>' type="datetime-local" id="heure-date" name="heure-date" required>
+                <input value='<?= $mealInfo['date'] ?> <?= $mealInfo['heure'] ?>' type="datetime-local" id="heure-date" name="heure-date" required>
             </div>
             <div class="btn-group">
                 <input id="form-btn" type="submit" value="Sauvegarder">
