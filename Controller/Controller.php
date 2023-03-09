@@ -98,7 +98,6 @@ function displayDashboard()
 
     //permet d'obtenir les infos de l'user
     $userInfo = getUserInfo($id);
-
     // foreach($userInfo as $cle => $valeur) {
     //     echo $cle . ':' . $valeur . '<br>';
     // }
@@ -108,8 +107,7 @@ function displayDashboard()
     $imc = round(imc($userInfo), 1);
     $physique = whatPhysique($imc);
 
-    // $dailyCalTotal = dailyCaloriesTotal($meals);
-
+    $dailyCalTotal = dailyCaloriesTotal($meals);
     $dailyCalGoal = dailyCaloriesGoal($userInfo);
     $goalAchieved = isGoalAchieved($dailyCalTotal, $dailyCalGoal);
     $statsArr = totalTenDaysCalories($dailyCalGoal);
@@ -153,12 +151,12 @@ function displayEditDeleteMeal()
 {
     $repasId = $_GET['id'];
     $mealInfo = getOneMealInfo($repasId);
-    print_r($mealInfo);
+    // print_r($mealInfo);
     if (!isset($_SESSION['id'])) {
         require './Vue/Home.php';
         header('Location: index.php');
     } else {
-        print_r($mealInfo);
+        // print_r($mealInfo);
         require './Vue/EditDeleteMeal.php';
     }
 }
@@ -266,7 +264,7 @@ function imc($userInfo)
     return $imc;
 }
 
-// // Défini la forme physique du user en fonction de son imc
+// Défini la forme physique du user en fonction de son imc
 function whatPhysique($imc)
 {
     $physique = 0;
@@ -300,40 +298,18 @@ function whatPhysique($imc)
 }
 
 
-
-// // Calcul le total de calories consommé dans la journée
+// Calcul le total de calories consommé dans la journée
 function dailyCaloriesTotal($meals)
 {
-    $total = 0;
-    // foreach ($meals as $meal) {
-    //     $total += $meal['kcal'];
-    // }
+    $total = -1;
 
-    // foreach($meals as $cle => $valeur) {
-    //     if($cle === "kcal") {
-    //         $total += $valeur;
-    //     }
-    // }
-    
-    // foreach($meals as $cle => $valeur) {
-    //     print_r($valeur);
-    // }
-
-    // foreach($meals as $cle => $valeur) {
-    //     $total += $valeur->kcal;
-    // }
-    // $total = intval($total);
-    // echo $total;
-
-    foreach ($meals as $objet) {
-        $total += $objet['kcal'];
+ 
+    foreach ($meals as $meal){
+        $total += $meal["kcal"];
     }
-    echo 'Total des kcal : ' . $total;
 
-
-    return $total;
+    return  $total;
 }
-
 
 
 // // Calcul la limite calorique pour perdre du poids
@@ -378,7 +354,6 @@ function isGoalAchieved($dailyCalTotal, $dailyCalGoal)
     }
     return $isGoalAchieved;
 }
-
 
 
 // // Calcul des calories des 10 derniers jours

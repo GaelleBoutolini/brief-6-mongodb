@@ -78,8 +78,9 @@ function getDayMeals($dayDate, $id)
         "id_user" => $id,
         "date" => $dayDate
     ]);
+    $mealsArr =  iterator_to_array($meals);
 
-    return $meals;
+    return $mealsArr;
 }
 
 // //Récupération des données d'un repas 
@@ -122,12 +123,12 @@ function getOneMealInfo($repasId)
 // // Modification d'un repas
 function getEditMeal($id, $type, $intitule, $calories, $date, $heure)
 {
-    echo $id .'<br>';
-    echo $type .'<br>';
-    echo $intitule .'<br>';
-    echo $calories .'<br>';
-    echo $date .'<br>';
-    echo $heure .'<br>';
+    // echo $id .'<br>';
+    // echo $type .'<br>';
+    // echo $intitule .'<br>';
+    // echo $calories .'<br>';
+    // echo $date .'<br>';
+    // echo $heure .'<br>';
 
     $collection = getConnection()->Repas;
 
@@ -154,19 +155,6 @@ function getDeleteMeal($repasId)
 
 function getEditUser($id, $nom, $prenom, $sexe, $age, $email, $password, $poids, $taille, $activite)
 {
-
-    // $query = $pdo->prepare("INSERT INTO Utilisateur (Nom, Prenom, Sexe, Age, Email, Mdp, Poids, Taille, Activite)
-    
-    // $result = $collection->updateOne(
-    //     ["_id" => new MongoDB\BSON\ObjectID($id)],
-    //     ['$set' => [
-    //     'type' => $type,
-    //     'description' => $intitule,
-    //     'kcal' => $calories,
-    //     'date' => $date,
-    //     'heure' => $heure
-    // ]]);
-
 
     $collection = getConnection()->User;
     $result = $collection->updateOne(
