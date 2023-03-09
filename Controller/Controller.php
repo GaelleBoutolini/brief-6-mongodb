@@ -81,10 +81,10 @@ function login()
 function displayDashboard()
 {
 
-    // if (!isset($_SESSION['id'])) {
-    //     require './Vue/Home.php';
-    //     header('Location: index.php');
-    // } else {
+    if (!isset($_SESSION['id'])) {
+        require './Vue/Home.php';
+        header('Location: index.php');
+    } else {
     $dayDate = date("Y-m-d", time());
     $id = $_SESSION['id'];
 
@@ -92,11 +92,8 @@ function displayDashboard()
 
     //permet d'obtenir les infos des repas du jour
     $meals = getDayMeals($dayDate, $id);
-    // print($meals);
     //permet d'obtenir les infos de l'user
     // $userInfo = getUserInfo($id);
-
-
 
     // // Fonctions controleur (utilise les données rendues par le modele pour faire des calculs)
     // $imc = round(imc($userInfo), 1);
@@ -107,7 +104,7 @@ function displayDashboard()
     // $goalAchieved = isGoalAchieved($dailyCalTotal, $dailyCalGoal);
     // $statsArr = totalTenDaysCalories($dailyCalGoal);
     require './Vue/Dashboard.php';
-    // }
+    }
 }
 
 // Afficher la page d'ajout de repas
