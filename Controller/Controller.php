@@ -92,7 +92,7 @@ function displayDashboard()
 
     //permet d'obtenir les infos des repas du jour
     $meals = getDayMeals($dayDate, $id);
-    // print($meals);
+    // print_r($meals);
     //permet d'obtenir les infos de l'user
 
 
@@ -305,7 +305,7 @@ function dailyCaloriesTotal($meals)
 {
     $total = 0;
     foreach ($meals as $meal) {
-        $total += $meal['Kcal'];
+        $total += $meal['kcal'];
     }
     return $total;
 }
